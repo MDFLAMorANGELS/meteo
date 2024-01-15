@@ -5,8 +5,7 @@ import { isSameDay } from 'date-fns';
 const getIcon = (icon) => `https://openweathermap.org/img/wn/${icon}@4x.png`
 
 export default function CurrentWeather({ data }) {
-
-    const [currentWeather, setCurrentWeather] = useState(null)
+    const [currentWeather, setCurrentWeather] = useState()
 
     useEffect(() => {
         const currentW = data.list.filter(forecast => {
@@ -19,20 +18,17 @@ export default function CurrentWeather({ data }) {
 
     return (
         <View style={styles.container}>
-            {currentWeather && (
-                <>
-                    <Text style={styles.city}>{data?.city?.name}</Text>
-                    <Text style={styles.today}>Aujourd'hui</Text>
+            <Text style={styles.city}>{data?.city?.name}</Text>
+            <Text style={styles.today}>Aujourd'hui</Text>
 
-                    <Image source={{ uri: getIcon(currentWeather.weather[0].icon) }} style={styles.image} />
+            <Image source={{ uri: getIcon(currentWeather?.weather[0].icon) }} style={styles.image} />
 
-                    <Text style={styles.temp}>{Math.round(currentWeather.main.temp)}°C</Text>
-                    <Text style={styles.description}>{currentWeather.weather[0].description}</Text>
-                </>
-            )}
+            <Text style={styles.temp}>{Math.round(currentWeather?.main.temp)}°C</Text>
+            <Text style={styles.description}>{currentWeather?.weather[0].description}</Text>
         </View>
     )
 }
+
 
 const COLOR = "#54565B";
 
