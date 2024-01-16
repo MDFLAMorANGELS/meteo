@@ -13,6 +13,12 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null);
+  const [backgroundColor, setBackgroundColor] = useState(null);
+
+  const setAppBackgroundColor = (color) => {
+    setBackgroundColor(color);
+    console.log(color);
+  };
 
 
   const getWeather = async (location) => {
@@ -60,14 +66,14 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,  backgroundColor ]}>
       {error ? (
         <Text role="alert" style={styles.errorText}>
           {error}
         </Text>
       ) : (
         <>
-          <CurrentWeather data={data} />
+          <CurrentWeather data={data} setAppBackgroundColor={setAppBackgroundColor}/>
           <Forecasts data={data} />
         </>
       )}
@@ -78,7 +84,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E2E6E1',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
