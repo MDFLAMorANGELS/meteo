@@ -14,46 +14,41 @@ export default function CurrentWeather({ data, setAppBackgroundColor }) {
             const forecastDate = new Date(forecast.dt * 1000)
             return isSameDay(today, forecastDate)
         })
-        const cityTimezone = data.city.timezone;
-        const currentCityTime = new Date().toLocaleTimeString('en-US', {
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        });
-    
-        console.log(currentW[0]);
-        console.log(currentCityTime);
-    
-        // Calculate total minutes based on the current time of the city
-        const [hour, minute] = currentCityTime.split(':').map(Number);
-        const totalMinutes = hour * 60 + minute;
-        console.log(totalMinutes);
 
-        // Calculate color based on the time of the day
-        //const nightColor = "#2903FF";
-        //const dayColor = "#03B4FF";
-        //const transitionColor = "#0349FF"
+        const currentCityTime = new Date().toLocaleTimeString('fr-FR', {
+            timeZone: 'Europe/Paris'
+        });
+
+        
+        console.log(currentW[0]);
+
+        const [hour, minute] = currentCityTime.split(':').map(Number);
+        const totalMinutes = hour * 60 + minute ;
 
         let backgroundStyle;
         if (totalMinutes >= 0 && totalMinutes < 5 * 60) {
-            // Night time (from 00:00:00 to 05:00:00)
-            backgroundStyle = { background: `linear-gradient(#5124FF, #9198e5)` };
+            // Night time (from 00:00:00 to 04:59:00)
+            backgroundStyle = `#5124FF,#9198e5`;
         } else if (totalMinutes >= 5 * 60 - 59 && totalMinutes < 8 * 60) {
-            // Day time (from 06:00:00 to 08:00:00)
-            backgroundStyle = { background: `linear-gradient(#9198e5, #e66465)` };
+            // Day time (from 05:00:00 to 07:59:00)
+            backgroundStyle = `#9198e5,#e66465`;
         } else if (totalMinutes >= 8 * 60 - 59 && totalMinutes < 13 * 60) {
-            // Day time (from 06:00:00 to 08:00:00)
-            backgroundStyle = { background: `linear-gradient(#e66465, #00BCFF)` };
+            // Day time (from 08:00:00 to 12:59:00)
+            backgroundStyle = `#e66465,#00BCFF`;
         } else if (totalMinutes >= 13 * 60 - 59 && totalMinutes < 17 * 60) {
-            // Day time (from 06:00:00 to 08:00:00)
-            backgroundStyle = { background: `linear-gradient(#00BCFF, #e66465)` };
+            // Day time (from 13:00:00 to 16:59:00)
+            backgroundStyle = `#00BCFF,#e66465`;
         } else if (totalMinutes >= 17 * 60 - 59 && totalMinutes < 21 * 60) {
-            // Day time (from 06:00:00 to 08:00:00)
-            backgroundStyle = { background: `linear-gradient(#e66465,#9198e5)` };
+            // Day time (from 17:00:00 to 20:59:00)
+            backgroundStyle = `#e66465,#9198e5`;
         } else if (totalMinutes >= 21 * 60 - 59 && totalMinutes < 23 * 60 + 59) {
-            // Day time (from 06:00:00 to 08:00:00)
-            backgroundStyle = { background: `linear-gradient(#9198e5, #5124FF)` };
+            // Day time (from 21:00:00 to 23:59:00)
+            backgroundStyle = `#9198e5,#5124FF`;
         }
+
         setAppBackgroundColor(backgroundStyle);
         setCurrentWeather(currentW[0]);
+
     }, [data]);
 
     return (
