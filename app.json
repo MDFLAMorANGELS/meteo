@@ -4,7 +4,7 @@
     "slug": "meteo",
     "version": "1.0.0",
     "description": "Une application météo développée avec React Native et Expo.",
-    "orientation": ["portrait", "landscape"],
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
