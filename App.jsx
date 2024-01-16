@@ -18,13 +18,13 @@ export default function App() {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-  
+
     const timeoutId = setTimeout(() => {
       console.error("Timeout: Le rafraîchissement a pris trop de temps.");
       setError("Le rafraîchissement a pris trop de temps.");
       setRefreshing(false);
     }, 10000);
-  
+
     // Appel de la fonction pour obtenir la localisation et mettre à jour la météo
     handleGetLocation()
       .then(() => {
@@ -84,9 +84,15 @@ export default function App() {
 
   if (loading) {
     return (
-      <View style={styles.containerLoading}>
-        <ActivityIndicator size="large" color="#00ff00"/>
-      </View>
+      <SafeAreaView style={styles.containerLoading}>
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 
