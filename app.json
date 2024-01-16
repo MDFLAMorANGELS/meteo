@@ -3,7 +3,8 @@
     "name": "meteo",
     "slug": "meteo",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "description": "Une application météo développée avec React Native et Expo.",
+    "orientation": ["portrait", "landscape"],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -15,13 +16,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIStatusBarStyle": "light-content"
+      },
+      "permissions": {
+        "location": ["NSLocationWhenInUseUsageDescription"]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": ["ACCESS_FINE_LOCATION", "INTERNET"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -36,6 +44,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/f4c1a934-c1d5-4a8f-acbf-a7ddf1f9c073"
-    }
+    },
+    "author": "Pieters Valentin"
   }
 }

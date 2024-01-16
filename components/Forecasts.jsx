@@ -26,9 +26,10 @@ export default function Forecasts({ data }) {
                 day,
                 data: forecastData.filter(forecast => forecast.name === day)
             }));
-
         setForecasts(newForecastsData);
     }, [data]);
+
+    
 
     return (
         <ScrollView
@@ -53,13 +54,14 @@ export default function Forecasts({ data }) {
 const styles = StyleSheet.create({
     scroll: {
         width: "100%",
-        height: "35%"
+        height: "35%",
     },
     day: {
         fontSize: 16,
         fontWeight: "bold",
         marginBottom: 10,
-        marginLeft: 5
+        marginLeft: 5,
+        color: "#fff"
     },
     container: {
         flexDirection: "row",
