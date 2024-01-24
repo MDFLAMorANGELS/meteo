@@ -28,7 +28,6 @@ export default function App() {
 
   useEffect(() => {
     if (selectedCity) {
-      // Fetch weather data for the selected city
       const fetchWeatherForCity = async () => {
         try {
           const response = await axios.get(API_URL_CITY(selectedCity));
@@ -41,7 +40,6 @@ export default function App() {
         }
       };
 
-      // Call the function to fetch weather for the selected city
       fetchWeatherForCity();
     }
   }, [selectedCity]);
@@ -68,8 +66,8 @@ export default function App() {
       setRefreshing(false);
     }, 5000);
 
-    // If selectedCity is not null, fetch weather for the selected city
     if (selectedCity) {
+      // si j ai une ville alors je fais la recherche météo a cette ville
       fetchWeatherForCity(selectedCity)
         .then(() => {
           clearTimeout(timeoutId);
@@ -85,7 +83,7 @@ export default function App() {
           setLoading(true);
         });
     } else {
-      // If selectedCity is null, call handleGetLocation
+    // sinon si j ai pas de ville alors je fais la recherche météo a la localisation de l appareiel
       handleGetLocation()
         .then(() => {
           clearTimeout(timeoutId);
@@ -165,17 +163,18 @@ export default function App() {
   if (loading) {
 
     return (
+      
       <SafeAreaView style={styles.containerLoading}>
         <ScrollView
           contentContainerStyle={styles.scrollView}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-          <StatusBar
-            translucent
-            backgroundColor="rgba(0, 0, 0, 0)"
-            barStyle="dark-content"
-          />
+        <StatusBar
+          translucent
+          backgroundColor="rgba(0, 0, 0, 0)"
+          barStyle="light-content"
+        />
           <ActivityIndicator size="large" color="#00ff00" />
         </ScrollView>
       </SafeAreaView>
@@ -222,8 +221,6 @@ export default function App() {
     </SafeAreaView>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
