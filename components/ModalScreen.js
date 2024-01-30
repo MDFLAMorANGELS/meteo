@@ -3,13 +3,13 @@ import { View, Modal, Text, StyleSheet, TouchableOpacity, BackHandler, TextInput
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const API_CITY_LIST_OWP = (city) => `http://api.openweathermap.org/data/2.5/find?q=${city}&sort=population&cnt=8&appid=4c23849d9f311f8ef2779dfdda390ed2`;
+//const API_CITY_LIST_OWP = (city) => `http://api.openweathermap.org/data/2.5/find?q=${city}&sort=population&cnt=8&appid=4c23849d9f311f8ef2779dfdda390ed2`;
 const API_CITY_LIST_GOUV = (city) => `https://geo.api.gouv.fr/communes?nom=${city}&departement=fields&boost=population&limit=4`;
 
 export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
   const [searchValue, setSearchValue] = useState('');
   const [data1, setData1] = useState([]);
-  const [data2, setData2] = useState([]);
+  //const [data2, setData2] = useState([]);
 
 
   const inputRef = useRef(null);
@@ -25,30 +25,29 @@ export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
       console.log(response1.data);
       setData1(response1.data);
   
-      const response2 = await axios.get(API_CITY_LIST_OWP(searchValue).replaceAll(" ", "-"));
-      console.log(response2.data.list);
-      const modifiedCities = response2.data.list.map((city) => ({
-        ...city,
-        nom: city.name,
-        name: undefined,
-      }));
+      // const response2 = await axios.get(API_CITY_LIST_OWP(searchValue).replaceAll(" ", "-"));
+      //   const modifiedCities = response2.data.list.map((city) => ({
+      //     ...city,
+      //     nom: city.name,
+      //     name: undefined,
+      //   }));
   
-      const filteredCities = modifiedCities.filter((city) => city.sys.country !== "FR");
+      //   const filteredCities = modifiedCities.filter((city) => city.sys.country !== "FR");
   
-      const uniqueCities = removeDuplicateCities(filteredCities);
-      setData2(uniqueCities);
+      //   const uniqueCities = removeDuplicateCities(filteredCities);
+      //   setData2(uniqueCities);
     } catch (error) {
-      console.error("Error get city list", error);
+      console.log()("Error get city list", error);
     }
   };
 
-  const removeDuplicateCities = (cities) => {
-    const uniqueCities = {};
-    cities.forEach((city) => {
-      uniqueCities[city.name] = city;
-    });
-    return Object.values(uniqueCities);
-  };
+  // const removeDuplicateCities = (cities) => {
+  //   const uniqueCities = {};
+  //   cities.forEach((city) => {
+  //     uniqueCities[city.name] = city;
+  //   });
+  //   return Object.values(uniqueCities);
+  // };
 
   useEffect(() => {
     if (debounceTimeout.current) {
@@ -63,7 +62,7 @@ export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
   const clearInput = () => {
     setSearchValue('');
     setData1([]);
-    setData2([]);
+    //setData2([]);
   };
 
   const renderCityItem = ({ item }) => (
@@ -80,7 +79,7 @@ export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
   const handleCitySelect = (city) => {
     onSelectCity(city.nom);
     setData1([]);
-    setData2([]);
+    //setData2([]);
     setSearchValue('')
     toggleModal();
   };
@@ -162,7 +161,7 @@ export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
               />
             </>
           ) : null}
-          {data2.length > 0 ? (
+          {/* {data2.length > 0 ? (
             <>
               <Text style={{ marginTop: 50, fontSize: 18 }}>Ville du monde</Text>
               <FlatList
@@ -172,7 +171,7 @@ export default function ModalScreen({ isVisible, toggleModal, onSelectCity }) {
                 keyExtractor={(item) => item.nom}
               />
             </>
-          ) : null}
+          ) : null} */}
         </View>
       </View>
     </Modal>
