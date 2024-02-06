@@ -10,7 +10,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ModalScreen from './components/ModalScreen';
 
 
-const API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=fr&units=metric`;
+const API_URL_COORD = (lat, lon) => `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=fr&units=metric`;
+const API_URL_CITY = (city) => `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&lang=fr&units=metric`;
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -19,6 +20,42 @@ export default function App() {
   const [backgroundColor, setBackgroundColor] = useState("transparent,transparent");
   const [modalVisible, setModalVisible] = useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
+  const [selectedCity, setSelectedCity] = useState(null);
+
+  const onSelectCity = (city) => {
+    setSelectedCity(city);
+  };
+
+  useEffect(() => {
+    if (selectedCity) {
+      const fetchWeatherForCity = async () => {
+        try {
+          const response = await axios.get(API_URL_CITY(selectedCity));
+          setData(response.data);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching weather data for city", error);
+          setError("Erreur lors de la récupération de la météo");
+          setLoading(false);
+        }
+      };
+
+      fetchWeatherForCity();
+    }
+  }, [selectedCity]);
+
+  const fetchWeatherForCity = async (city) => {
+    try {
+      const response = await axios.get(API_URL_CITY(city));
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching weather data for city", error);
+      setError("Erreur lors de la récupération de la météo");
+      setLoading(false);
+    }
+  };
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -29,24 +66,40 @@ export default function App() {
       setRefreshing(false);
     }, 5000);
 
-    // Appel de la fonction pour obtenir la localisation et mettre à jour la météo
-    handleGetLocation()
-      .then(() => {
-        // Annuler le timeout et l erreur car la mise à jour a réussi
-        clearTimeout(timeoutId);
-        setRefreshing(false);
-        setError(null);
-        setLoading(false);
-      })
-      .catch((error) => {
-        // Annuler le timeout en cas d'erreur
-        clearTimeout(timeoutId);
-        console.error("Error refreshing data", error);
-        setError("Erreur lors du rafraîchissement des données");
-        setRefreshing(false);
-        setLoading(true)
-      });
-  }, []);
+    if (selectedCity) {
+      // si j ai une ville alors je fais la recherche météo a cette ville
+      fetchWeatherForCity(selectedCity)
+        .then(() => {
+          clearTimeout(timeoutId);
+          setRefreshing(false);
+          setError(null);
+          setLoading(false);
+        })
+        .catch((error) => {
+          clearTimeout(timeoutId);
+          console.error("Error refreshing data", error);
+          setError("Erreur lors du rafraîchissement des données");
+          setRefreshing(false);
+          setLoading(true);
+        });
+    } else {
+    // sinon si j ai pas de ville alors je fais la recherche météo a la localisation de l appareiel
+      handleGetLocation()
+        .then(() => {
+          clearTimeout(timeoutId);
+          setRefreshing(false);
+          setError(null);
+          setLoading(false);
+        })
+        .catch((error) => {
+          clearTimeout(timeoutId);
+          console.error("Error refreshing data", error);
+          setError("Erreur lors du rafraîchissement des données");
+          setRefreshing(false);
+          setLoading(true);
+        });
+    }
+  }, [selectedCity]);
 
 
   const setAppBackgroundColor = (color) => {
@@ -55,7 +108,7 @@ export default function App() {
 
   const getWeather = async (location) => {
     try {
-      const response = await axios.get(API_URL(location.coords.latitude, location.coords.longitude))
+      const response = await axios.get(API_URL_COORD(location.coords.latitude, location.coords.longitude))
       setData(response.data)
       setLoading(false)
     } catch (error) {
@@ -110,17 +163,18 @@ export default function App() {
   if (loading) {
 
     return (
+      
       <SafeAreaView style={styles.containerLoading}>
         <ScrollView
           contentContainerStyle={styles.scrollView}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-          <StatusBar
-            translucent
-            backgroundColor="rgba(0, 0, 0, 0)"
-            barStyle="dark-content"
-          />
+        <StatusBar
+          translucent
+          backgroundColor="rgba(0, 0, 0, 0)"
+          barStyle="light-content"
+        />
           <ActivityIndicator size="large" color="#00ff00" />
         </ScrollView>
       </SafeAreaView>
@@ -158,7 +212,7 @@ export default function App() {
               style={styles.menuIcon}
               onPress={toggleModal}
             />
-            <ModalScreen isVisible={modalVisible} toggleModal={toggleModal} />
+            <ModalScreen isVisible={modalVisible} toggleModal={toggleModal} onSelectCity={onSelectCity} />
             <CurrentWeather data={data} setAppBackgroundColor={setAppBackgroundColor} />
             <Forecasts data={data} />
           </>
@@ -167,8 +221,6 @@ export default function App() {
     </SafeAreaView>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
