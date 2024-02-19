@@ -11,9 +11,11 @@
   "dependencies": {
     "@expo/webpack-config": "~19.0.1",
     "axios": "1.6.5",
+    "crypto-js": "^4.2.0",
     "date-fns": "3.2.0",
     "expo": "^50.0.0",
     "expo-constants": "~15.4.5",
+    "expo-dev-client": "~3.3.8",
     "expo-linear-gradient": "~12.7.0",
     "expo-location": "~16.5.2",
     "expo-status-bar": "~1.11.1",
@@ -22,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.73.2",
     "react-native-dotenv": "^3.4.9",
+    "react-native-vector-icons": "^10.0.3",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
