@@ -4,7 +4,7 @@
     "slug": "meteo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/test.png",
+    "icon": "./assets/test2.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/test.png",
+        "foregroundImage": "./assets/test2.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.mdflamorangels78.meteo"
