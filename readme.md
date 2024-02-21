@@ -2,17 +2,17 @@
 
 ## Introduction
 
-Cette application météo utilise l'API OpenWeatherMap pour fournir des informations sur la météo actuelle et les prévisions pour les prochains jours. L'application permet à l'utilisateur de choisir la ville à laquelle il souhaite obtenir des informations météorologiques.
+Cette application météo utilise l'API OpenWeatherMap pour fournir des informations sur la météo actuelle et les prévisions pour les prochains jours, elle utilise également l'API geo.api.gouv.fr pour récupérer les villes de france. L'application permet de récupérer la position actuelle de l'utilisateur (Monde) ou bien de choisir la ville à laquelle il souhaite obtenir des informations météorologiques (En france métropolitaine).
 
 ## Fonctionnalités
 
-* Affichage de la météo actuelle, y compris la température, la pression, l'humidité, la vitesse du vent et la direction du vent.
-* Affichage des prévisions pour les prochains jours, y compris la température maximale, la température minimale, les précipitations et les conditions météorologiques.
+* Affichage de la météo actuelle, y compris la température.
+* Affichage des prévisions pour les prochains jours, méteo ainsi que température selon les heures.
 * Possibilité de choisir la ville à laquelle l'utilisateur souhaite obtenir des informations météorologiques.
 
 ## Installation
 
-Pour installer l'application, vous devez suivre les étapes suivantes :
+Pour récupérer le projet, vous devez suivre les étapes suivantes :
 
 1. Clonez le repository GitHub :
 
@@ -31,7 +31,14 @@ cd meteo
 npm install
 ```
 
-4. Lancez l'application selon la plateforme:
+4. Ajouter le .env :
+
+```
+Ajouter un fichier .env à la racine du projet
+API_KEY = Votre cléé OpenWeatherMap
+```
+
+5. Lancez l'application selon la plateforme:
 
 ```
 npm run web
@@ -46,9 +53,9 @@ Si vous avez l'application Expo installée sur votre appareil, vous pouvez scann
 Pour utiliser l'application, procédez comme suit :
 
 L'application affiche la météo actuelle de la ville ou vous êtes actuellement.
-Pour changer la ville, appuyez sur le bouton "Changer de ville".
+Pour changer la ville, appuyez sur le bouton en haut à gauche pour ouvrir la fenêtre.
 Saisissez le nom de la ville que vous souhaitez consulter.
-Appuyez sur le bouton "Soumettre".
+Appuyez sur la ville souhaité.
 L'application affichera désormais les informations météorologiques pour la ville que vous avez sélectionnée.
 
 ## Contributions
