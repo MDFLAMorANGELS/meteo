@@ -1,0 +1,31 @@
+{
+  "cli": {
+    "version": ">= 6.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "API_KEY": "@API_KEY"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "API_KEY": "@API_KEY"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "env": {
+        "API_KEY": "@API_KEY"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

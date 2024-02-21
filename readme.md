@@ -31,10 +31,12 @@ cd meteo
 npm install
 ```
 
-4. Lancez l'application :
+4. Lancez l'application selon la plateforme:
 
 ```
 npm run web
+npm run android
+npm run ios
 ```
 
 Si vous avez l'application Expo installée sur votre appareil, vous pouvez scanner le code QR qui s'affiche dans votre terminal pour lancer l'application directement sur votre appareil.
