@@ -4,6 +4,8 @@
 
 Cette application météo utilise l'API OpenWeatherMap pour fournir des informations sur la météo actuelle et les prévisions pour les prochains jours, elle utilise également l'API geo.api.gouv.fr pour récupérer les villes de france. L'application permet de récupérer la position actuelle de l'utilisateur (Monde) ou bien de choisir la ville à laquelle il souhaite obtenir des informations météorologiques (En france métropolitaine).
 
+Prochainement disponible sur le Play Store
+
 ## Fonctionnalités
 
 * Affichage de la météo actuelle, y compris la température.
@@ -11,6 +13,7 @@ Cette application météo utilise l'API OpenWeatherMap pour fournir des informat
 * Possibilité de choisir la ville à laquelle l'utilisateur souhaite obtenir des informations météorologiques.
 
 ## Installation
+
 
 Pour récupérer le projet, vous devez suivre les étapes suivantes :
 
@@ -47,6 +50,13 @@ npm run ios
 ```
 
 Si vous avez l'application Expo installée sur votre appareil, vous pouvez scanner le code QR qui s'affiche dans votre terminal pour lancer l'application directement sur votre appareil.
+
+Pour Installer l'application méteo (uniquement disponnible sur android pour le moment):
+
+* Décomprésser le fichierApk.zip
+* Télécharger le fichier.apk
+* Installer le fichier.apk sur votre appareil android
+
 
 ## Utilisation
 
