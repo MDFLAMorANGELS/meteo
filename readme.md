@@ -1,7 +1,7 @@
 # Application météo React Native
 
 ![Header image1](./img_Readme/Screenshot_20240222_141815_meteo.jpg)
-![Header image2](./img_Readme/Screenshot_20240222_141505_meteo.png)
+![Header image2](./img_Readme/Screenshot_20240222_141505_meteo.jpg)
 ![Header image3](./img_Readme/Screenshot_20240222_141936_meteo.jpg)
 ![Header image4](./img_Readme/Screenshot_20240222_142058_meteo.jpg)
 
