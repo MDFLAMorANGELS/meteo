@@ -1,5 +1,10 @@
 # Application météo React Native
 
+![Header image1](./img_Readme/Screenshot_20240222_141815_meteo.jpg)
+![Header image2](./img_Readme/Screenshot_20240222_141505_meteo.jpg)
+![Header image3](./img_Readme/Screenshot_20240222_141936_meteo.jpg)
+![Header image4](./img_Readme/Screenshot_20240222_142058_meteo.jpg)
+
 ## Introduction
 
 Cette application météo utilise l'API OpenWeatherMap pour fournir des informations sur la météo actuelle et les prévisions pour les prochains jours, elle utilise également l'API geo.api.gouv.fr pour récupérer les villes de france. L'application permet de récupérer la position actuelle de l'utilisateur (Monde) ou bien de choisir la ville à laquelle il souhaite obtenir des informations météorologiques (En france métropolitaine).
