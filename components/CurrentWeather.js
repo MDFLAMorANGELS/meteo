@@ -18,7 +18,7 @@ export default function CurrentWeather({ data, setAppBackgroundColor }) {
             })
 
             const currentCityTime = new Date().toLocaleTimeString('fr-FR', {
-                timeZone: 'Europe/Paris'
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
             });
 
             //console.log(currentW);
