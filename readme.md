@@ -1,5 +1,10 @@
 # Application météo React Native
 
+![Header image1](./img_Readme/Screenshot_20240222_141815_meteo.jpg)
+![Header image2](./img_Readme/Screenshot_20240222_141505_meteo.jpg)
+![Header image3](./img_Readme/Screenshot_20240222_141936_meteo.jpg)
+![Header image4](./img_Readme/Screenshot_20240222_142058_meteo.jpg)
+
 ## Introduction
 
 Cette application météo utilise l'API OpenWeatherMap pour fournir des informations sur la météo actuelle et les prévisions pour les prochains jours. L'application permet à l'utilisateur de choisir la ville à laquelle il souhaite obtenir des informations météorologiques.
